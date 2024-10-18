@@ -1,0 +1,3 @@
+[Key.cmd][Key.shift]Shello[Key.backspace][Key.backspace]
+how are youhow are you[Key.shift_r]??[Key.caps_lock]git [Key.alt_l][Key.tab]ar[Key.backspace][Key.backspace][Key.caps_lock]re you
+[Key.esc][Key.esc]
